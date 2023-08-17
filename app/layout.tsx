@@ -8,7 +8,7 @@ import Providers from "../components/provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Flow",
+  title: "Floona",
   description: "game your life",
 };
 
