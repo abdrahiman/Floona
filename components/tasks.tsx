@@ -13,8 +13,8 @@ export default function Tasks() {
       className="mt-8 tasks flex gap-4 flex-col justify-start items-start"
       id={hoverd ? "elementHovered" : ""}
     >
-      {user.dayTasks.tasks.map((t, i) => (
-        <Task setHovered={setHovered} task={t} key={i} />
+      {user.todayTasks.tasks.map((t) => (
+        <Task setHovered={setHovered} task={t} key={`${t.createdAt}`} />
       ))}
     </ul>
   );

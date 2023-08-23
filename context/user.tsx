@@ -8,29 +8,31 @@ let getDate = () => moment().format("DD-MM-YYYY");
 export const UserContext = createContext<{
   user: {
     points: number;
-    habits: { value: string; checked: boolean; points: number }[] | [];
+    habits: { value: string;createdAt:Date; checked: boolean; points: number }[] | [];
     awards: { value: string; points: number; buyed: boolean }[];
-    dayTasks: {
+    todayTasks: {
       day: string;
-      tasks: { value: string; checked: boolean; points: number }[];
+      tasks: { value: string;createdAt:Date; checked: boolean; points: number }[];
     };
+    daysTasks:
+      | []
+      | {
+          day: string;
+          tasks: { value: string;createdAt: Date;checked: boolean; points: number }[];
+        }[];
   };
   setUser: any;
-  daysTasks:
-    | []
-    | {
-        day: string;
-        tasks: { value: string; checked: boolean; points: number }[];
-      }[];
+  NewTask: any;
 }>({
   user: {
     points: 0,
     habits: [],
     awards: [],
-    dayTasks: { day: getDate(), tasks: [] },
+    daysTasks: [],
+    todayTasks: { day: getDate(), tasks: [] },
   },
   setUser: {},
-  daysTasks: [],
+  NewTask: {},
 });
 
 export default function UserProvider({
@@ -38,56 +40,85 @@ export default function UserProvider({
 }: {
   children: React.ReactNode;
 }) {
-  let [user, setUser] = useState<{
+  let [user, setUserD] = useState<{
     points: number;
-    habits: { value: string; checked: boolean; points: number }[] | [];
+    habits: { value: string;createdAt:Date; checked: boolean; points: number }[] | [];
     awards: { value: string; points: number; buyed: boolean }[];
-    dayTasks: {
+    todayTasks: {
       day: string;
-      tasks: { value: string; checked: boolean; points: number }[];
+      tasks: { value: string;createdAt:Date; checked: boolean; points: number }[];
     };
+    daysTasks: {
+      day: string;
+      tasks: { value: string;createdAt:Date; checked: boolean; points: number }[];
+    }[];
   }>({
     points: 0,
     habits: [],
-    dayTasks: { day: getDate(), tasks: [] },
+    todayTasks: { day: getDate(), tasks: [] },
     awards: [],
+    daysTasks: [],
   });
-  let [daysTasks, setDaysTasks] = useState<(typeof user.dayTasks)[]>([]);
 
   let [loadLocale, setIsLoad] = useState(false);
+  //get user from localehost
   useEffect(() => {
-    if (window.localStorage.getItem("userTasks")) {
-      let days = JSON.parse(window.localStorage.getItem("userTasks") || "");
-      if (days.length == 0) return;
-      let curDay = days?.find((d: typeof user.dayTasks) => d.day == getDate());
-      if (curDay) {
-        setUser(curDay);
+    if (window.localStorage.getItem("userData")) {
+      let oldUser = JSON.parse(window.localStorage.getItem("userData") || "");
+      if (oldUser.daysTasks.length != 0) {
+        let curDayInOldUser = oldUser.daysTasks?.find(
+          (d: typeof user.todayTasks) => d.day == getDate()
+        );
+        //is Today
+        if (curDayInOldUser) {
+          setUser({ ...oldUser, todayTasks: curDayInOldUser });
+        }
+        //make the default state
+        return;
       }
-      setDaysTasks(days);
+      setUser(user);
     }
     setIsLoad(true);
   }, []);
-  useEffect(() => {
-    if (!loadLocale) return;
-    let tmp = daysTasks;
-    let curDay = tmp?.find((d) => d.day == getDate());
-    if (curDay) {
-      //add task to a day
-      curDay.tasks = user.dayTasks.tasks;
-      setDaysTasks([...tmp]);
+
+  let setUser= (v:any)=>{
+    setUserD(v);
+    localStorage.setItem("userData", JSON.stringify(user));
+  }
+  let NewTask = (task: { points: number; value: string; checked: boolean,createdAt:Date }) => {
+    let temp = user;
+
+    if (user.daysTasks) {
+      let curDayInUser = temp.daysTasks?.find(
+        (d: typeof user.todayTasks) => d.day == getDate()
+      );
+      console.log(curDayInUser);
+      //is Today
+      if (curDayInUser) {
+        curDayInUser.tasks.push(task);
+      } else {
+        console.log("new day");
+        temp.daysTasks = [
+          ...temp.daysTasks,
+          { day: getDate(), tasks: [...temp.habits, task] },
+        ];
+        console.log(temp);
+      }
     } else {
-      //create a new day
-      let newday = { tasks: user.habits, day: getDate() };
-      setDaysTasks((prv) => [...prv, newday]);
-      setUser({ ...user, dayTasks: newday });
-      tmp = [...daysTasks, newday];
+      temp.daysTasks = [{ day: getDate(), tasks: [...temp.habits, task] }];
     }
-    console.log(tmp);
-    localStorage.setItem("userTasks", JSON.stringify(tmp));
-  }, [user, setUser]);
+    let today = temp.daysTasks?.find(
+      (d: typeof user.todayTasks) => d.day == getDate()
+    );
+    if (today) {
+      temp.todayTasks = today;
+    }
+    setUser({ ...temp });
+    localStorage.setItem("userData", JSON.stringify(user));
+  };
 
   return (
-    <UserContext.Provider value={{ user, setUser, daysTasks }}>
+    <UserContext.Provider value={{ user, setUser, NewTask }}>
       {children}
     </UserContext.Provider>
   );

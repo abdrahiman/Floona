@@ -71,21 +71,6 @@ nav {
       }
       .bg {
         cursor: pointer;
-        // &.checked {
-        //   background-color: black;
-        // }
-        // svg {
-        //   fill: white;
-        // }
-        // &.bg-night {
-        //   border: 1px solid white;
-        //   &.checked {
-        //     background-color: white;
-        //   }
-        //   svg {
-        //     fill: black;
-        //   }
-        // }
         overflow: hidden;
         justify-content: center;
         align-items: center;
@@ -101,7 +86,10 @@ nav {
     }
   }
   li.checked {
-    text-decoration: line-through;
+    h3,
+    input {
+      text-decoration: line-through;
+    }
   }
 
   &#elementHovered {

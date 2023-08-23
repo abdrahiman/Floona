@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Container className="mt-20">
       <div className="flex items-end gap-4">
-        <h1 className="text-3xl font-bold capitalize">Today</h1>
+        <h1 className="text-3xl font-bold capitalize max-md:text-2xl">Today</h1>
         <p className="text-gray-500 dark:text-gray-400 text-xs capitalize">
           {moment().format("MMMM DD, YYYY")}
         </p>

@@ -9,7 +9,7 @@ import { PiCoinVerticalDuotone } from "react-icons/pi";
 export default function Nav() {
   let [isDark, setDark] = useState(false);
   let [drop, setDrop] = useState(false);
-  let { user } = useContext(UserContext);
+let { user } = useContext(UserContext);
   let handleTheme = () => {
     let html: any = document.querySelector(":root");
     if (isDark) {
@@ -226,12 +226,18 @@ export default function Nav() {
                 drop ? "block" : "hidden"
               }`}
             >
-              <Link
-                href="/progress"
-                className="px-4 rounded-lg py-2 text-gray-700 dark:text-gray-200 text-sm capitalize transition-colors duration-300 transform hover:bg-[#f5f5f5] dark:hover:bg-[#222] dark:hover:text-white w-full flex justify-between items-center"
-              >
-                progress
-              </Link>
+            <Link
+              href="/"
+              className="px-4 rounded-lg py-2 text-gray-700 dark:text-gray-200 text-sm capitalize transition-colors duration-300 transform hover:bg-[#f5f5f5] dark:hover:bg-[#222] dark:hover:text-white w-full flex justify-between items-center"
+            >
+              today tasks
+            </Link>
+            <Link
+            href="/progress"
+            className="px-4 rounded-lg py-2 text-gray-700 dark:text-gray-200 text-sm capitalize transition-colors duration-300 transform hover:bg-[#f5f5f5] dark:hover:bg-[#222] dark:hover:text-white w-full flex justify-between items-center"
+            >
+            progress
+            </Link>
               <Link
                 href="/rewards"
                 className="px-4 rounded-lg py-2 text-gray-700 dark:text-gray-200 text-sm capitalize transition-colors duration-300 transform hover:bg-[#f5f5f5] dark:hover:bg-[#222] dark:hover:text-white w-full flex justify-between items-center"

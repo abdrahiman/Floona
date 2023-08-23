@@ -7,13 +7,13 @@ export default function CreateReward() {
   let { user, setUser } = useContext(UserContext);
   let handleAdd = (e: FormEvent) => {
     e.preventDefault();
-    let taskValue: string = (e.target as any).award.value;
+    let awardValue: string = (e.target as any).award.value;
     let points = Number((e.target as any).point.value);
-    if (!taskValue || !points) return;
+    if (!awardValue || !points) return;
     let tmp = user;
     tmp.awards.push({
       points,
-      value: taskValue,
+      value: awardValue,
       buyed: false,
     });
     setUser({ ...tmp });
