@@ -46,7 +46,6 @@ users can:
 - create a to do.
 - create an award for a todo.
 - see his progress.
-- 
 
 # Technologies
 
