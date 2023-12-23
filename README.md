@@ -8,7 +8,7 @@ To get started with PenPoint, follow these steps:
 
 1. Clone the repository:
 ```
-git clone https://github.com/iabdrahim/realtime-chess.git
+https://github.com/iabdrahim/Floona.git
 ```
 Install dependencies:
 
