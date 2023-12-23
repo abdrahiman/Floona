@@ -1,34 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Realtime Chess
 
-## Getting Started
+just a simple and minimal project to get things done and get your self awards.
 
-First, run the development server:
+# Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+To get started with PenPoint, follow these steps:
+
+1. Clone the repository:
+```
+git clone https://github.com/iabdrahim/realtime-chess.git
+```
+Install dependencies:
+
+If you prefer using Yarn:
+
+```
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+If you prefer using npm:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm install
+```
+Note: If you choose npm, it will generate a package-lock.json file. You can safely delete the yarn.lock file if you decide to use npm as your package manager.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Run the development server:
 
-## Learn More
+If you are using Yarn:
+```
+yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+If you are using npm:
+```
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application will be available at http://localhost:3000.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Usage
 
-## Deploy on Vercel
+users can:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- create a to do.
+- create an award for a todo.
+- see his progress.
+- 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Technologies
+
+This project is built using the following technologies:
+
+- Next.js
+- TypeScript
+- localstorage
+
+# Contributing
+
+Thank you for your interest in contributing to this project ! Contributions are welcome and encouraged. To contribute to the project, please follow these steps:
+
+- Fork the repository.
+- Create a new branch from main and give it a descriptive name.
+- Make your changes.
+- Commit and push your changes.
+- Create a pull request.
+- Wait for your pull request to be reviewed and merged.
+
+# Contact
+
+👤 Abdrahimo
+
+Github: @iabdrahim
+Email: abderrahimaneddam1@gmail.com
+
+# 📝 License
+
+This project is licensed under the MIT License
+
+---
+
+Give a ⭐️ if this project helped you!
