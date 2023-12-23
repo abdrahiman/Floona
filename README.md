@@ -1,4 +1,4 @@
-# Realtime Chess
+# Floona
 
 just a simple and minimal project to get things done and get your self awards.
 
