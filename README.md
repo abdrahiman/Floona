@@ -2,6 +2,22 @@
 
 just a simple and minimal project to get things done and get your self awards.
 
+# Usage
+
+users can:
+
+- create a to do.
+- create an award for a todo.
+- see his progress.
+
+# Technologies
+
+This project is built using the following technologies:
+
+- Next.js
+- TypeScript
+- localstorage
+
 # Installation
 
 To get started with PenPoint, follow these steps:
@@ -38,22 +54,6 @@ npm run dev
 ```
 
 The application will be available at http://localhost:3000.
-
-# Usage
-
-users can:
-
-- create a to do.
-- create an award for a todo.
-- see his progress.
-
-# Technologies
-
-This project is built using the following technologies:
-
-- Next.js
-- TypeScript
-- localstorage
 
 # Contributing
 
