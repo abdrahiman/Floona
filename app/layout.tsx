@@ -1,11 +1,11 @@
 import "./globals.scss";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import {Tajawal } from "next/font/google";
 import Nav from "../components/nav";
 import UserProvider from "@/context/user";
 import Providers from "../components/provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Tajawal({weight:["200" , "300" , "400" , "500" , "700" , "800" , "900"],subsets: ["arabic" , "latin"]});
 
 export const metadata: Metadata = {
   title: "Floona",
@@ -18,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="">
+    <html lang="ar" className="">
       <body
-        className={`${inter.className} bg-day dark:bg-night text-gray-900 dark:text-gray-100`}
+        className={`${inter.className} bg-day dark:bg-night text-gray-900 dark:text-gray-100 pr-[3.5rem]`}
       >
         <Providers>
           <UserProvider>

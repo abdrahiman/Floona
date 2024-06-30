@@ -10,7 +10,12 @@ export default function CreateTask() {
     let taskValue: string = (e.target as any).task.value;
     let points = Number((e.target as any).point.value);
     if (!taskValue) return;
-    NewTask({ checked: false,createdAt:Date.now(), value: taskValue, points });
+    NewTask({
+      checked: false,
+      createdAt: Date.now(),
+      value: taskValue,
+      points,
+    });
 
     (e.target as any).task.value = "";
     (e.target as any).point.value = "1";
@@ -23,10 +28,11 @@ export default function CreateTask() {
       <input
         type="text"
         name="task"
-        placeholder="what do you want to do today?"
-        className="pl-4 rounded-lg max-md:pl-2 w-full h-full bg-transparent outline-none max-md:text-sm"
+        placeholder="ما الذي تنوي القيام به اليوم؟"
+        className="px-4 rounded-lg max-md:pl-2 w-full h-full bg-transparent outline-none max-md:text-sm"
       />
       <div className="flex gap-1 h-full w-fit py-2 pr-2 items-center justify-start">
+        <PiCoinVerticalDuotone />
         <input
           className="w-8 max-md:w-6 outline-none pl-1 bg-day dark:bg-night h-full rounded-lg"
           type="number"
@@ -34,12 +40,11 @@ export default function CreateTask() {
           defaultValue="1"
           name="point"
         />
-        <PiCoinVerticalDuotone />
         <button
           type="submit"
-          className="ml-6 max-md:ml-1 rounded-lg px-4 max-md:px-3 py-1 bg-day text-night"
+          className="ml-6 max-md:ml-1 rounded-lg px-4 max-md:px-3 py-1  bg-green-600 text-day dark:bg-day dark:text-night"
         >
-          Add
+          اضافة
         </button>
       </div>
     </form>

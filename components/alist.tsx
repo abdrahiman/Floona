@@ -4,6 +4,7 @@ import { PiCoinVerticalDuotone } from "react-icons/pi";
 import { MdIncompleteCircle } from "react-icons/md";
 import { UserContext } from "@/context/user";
 import { useContext } from "react";
+import { CheckCheck } from "lucide-react";
 
 export default function AList() {
   let { user } = useContext(UserContext);
@@ -64,7 +65,7 @@ let Reward = ({
   };
   return (
     <li
-      className={`text-base flex gap-4 justify-between items-center bg-[#f1f1f1] dark:bg-[#1b1b1b] first-letter:capitalize pl-4 hover:bg-[#ddd] dark:hover:bg-[#222] ${
+      className={`text-base flex gap-4 justify-between items-center bg-[#f1f1f1] dark:bg-[#1b1b1b] first-letter:capitalize pr-4 hover:bg-[#ddd] dark:hover:bg-[#222] ${
         cantGet ? "opacity-70 pointer-events-none" : ""
       }`}
     >
@@ -72,15 +73,15 @@ let Reward = ({
       {completed ? (
         <button
           onClick={handleRemove}
-          className="bg-night text-day dark:text-night dark:bg-day py-2 px-4 rounded-r-lg flex items-center flex-col min-h-full text-base"
+          className="bg-night text-day dark:text-night dark:bg-day py-2 px-4 rounded-l-lg flex items-center flex-col min-h-full text-base"
         >
-          <MdIncompleteCircle className="inline-block ml-1" size={20} />
-          completed
+          <CheckCheck className="inline-block ml-1" size={20} />
+          done
         </button>
       ) : (
         <button
           onClick={handleBuy}
-          className="bg-night text-day dark:text-night dark:bg-day py-2 px-4 rounded-r-lg flex items-center flex-col min-h-full text-base"
+          className="bg-night text-day dark:text-night dark:bg-day py-2 px-4 rounded-l-lg flex items-center flex-col min-h-full text-base"
         >
           <PiCoinVerticalDuotone className="inline-block ml-1" size={20} />{" "}
           {award.points}

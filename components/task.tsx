@@ -1,12 +1,13 @@
 "use client";
 
 import { UserContext } from "@/context/user";
-import { useContext, FormEvent, useState } from "react";
+import { useContext, FormEvent, useState, MouseEventHandler } from "react";
 import { HiCheck, HiDotsVertical } from "react-icons/hi";
 
 export type ITask = {
   value: string;
-  points: number;createdAt:Date;
+  points: number;
+  createdAt: Date;
   checked: boolean;
 };
 export default function Task({
@@ -20,6 +21,16 @@ export default function Task({
   let [editeMode, setEditeMode] = useState(false);
   let { user, setUser } = useContext(UserContext);
 
+  let handleCheck: MouseEventHandler<HTMLDivElement> = () => {
+    let t = user.todayTasks.tasks.find((el: ITask) => el == task) as ITask;
+    t.checked = !t.checked;
+    if (t.checked) {
+      user.points += Number(t.points);
+    } else {
+      user.points -= Number(t.points);
+    }
+    setUser({ ...user });
+  };
   let handleEdite = (e: FormEvent) => {
     e.preventDefault();
     let taskV = (e.target as any).task.value;
@@ -42,8 +53,13 @@ export default function Task({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => (setHovered(false), setDrop(false))}
     >
-      <span className="text-xs text-gray-700 dark:text-gray-300">{task.points}</span>
-      <div className="flex gap-4 justify-between items-center w-full h-full">
+      <span className="text-xs text-gray-700 dark:text-gray-300">
+        {task.points}
+      </span>
+      <div
+        className="flex gap-4 justify-between items-center w-full h-full"
+        onClick={handleCheck}
+      >
         <span className="checkbox">
           <input
             type="checkbox"
@@ -53,18 +69,6 @@ export default function Task({
           />
           <span
             aria-hidden="true"
-            onClick={() =>
-              setUser((prv: any) => {
-                let t = prv.todayTasks.tasks.find((el: ITask) => el == task);
-                t.checked = !t.checked;
-                if (t.checked) {
-                  prv.points += Number(t.points);
-                } else {
-                  prv.points -= Number(t.points);
-                }
-                return { ...prv };
-              })
-            }
             className={
               task.checked
                 ? "bg checked border-day dark:border-night text-day bg-night dark:text-night dark:bg-day"
@@ -103,7 +107,9 @@ export default function Task({
             className="w-full h-full max-md:text-sm"
             onClick={() =>
               setUser((prv: any) => {
-                let t = prv.todayTasks.tasks.find((el: ITask) => el.createdAt == task.createdAt);
+                let t = prv.todayTasks.tasks.find(
+                  (el: ITask) => el.createdAt == task.createdAt
+                );
                 t.checked = !t.checked;
                 if (t.checked) {
                   prv.points += t.points;
@@ -135,13 +141,19 @@ export default function Task({
             className="px-4 rounded-lg py-2 text-gray-700 dark:text-gray-200 text-sm capitalize transition-colors duration-300 transform hover:bg-[#f5f5f5] dark:hover:bg-[#222] dark:hover:text-white w-full flex justify-between items-center"
             onClick={() =>
               setUser((prv: any) => {
-                let habs = prv.habits
-                if (prv.habits.some((h: any) => h.createdAt == task.createdAt)) {
-                  return { ...prv, habits: habs.filter((hb: any) => hb.createdAt != task.createdAt) };
+                let habs = prv.habits;
+                if (
+                  prv.habits.some((h: any) => h.createdAt == task.createdAt)
+                ) {
+                  return {
+                    ...prv,
+                    habits: habs.filter(
+                      (hb: any) => hb.createdAt != task.createdAt
+                    ),
+                  };
                 }
-                habs = [...habs,task];
-                console.log(habs)
-                return { ...prv,habits:habs };
+                habs = [...habs, task];
+                return { ...prv, habits: habs };
               })
             }
           >
@@ -159,8 +171,10 @@ export default function Task({
             className="px-4 rounded-lg py-2 text-gray-700 dark:text-gray-200 text-sm capitalize transition-colors duration-300 transform hover:bg-[#f5f5f5] dark:hover:bg-[#222] dark:hover:text-white w-full flex justify-between items-center"
             onClick={() =>
               setUser((prv: any) => {
-                prv.todayTasks.tasks = prv.todayTasks.tasks.filter((el:any)=>el!=task)
-                prv.todayTasks.tasks = [task,...prv.todayTasks.tasks]
+                prv.todayTasks.tasks = prv.todayTasks.tasks.filter(
+                  (el: any) => el != task
+                );
+                prv.todayTasks.tasks = [task, ...prv.todayTasks.tasks];
                 return { ...prv };
               })
             }
