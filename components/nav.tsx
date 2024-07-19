@@ -65,6 +65,15 @@ export default function Nav() {
             <Award />
           </button>
         </Link>
+        <Link href="/queue">
+          <button
+            className={`w-10 text-black-600 rounded-xl h-10 flex items-center justify-center ${
+              r == "/queue" ? "bg-green-600 text-white" : ""
+            }`}
+          >
+            <Sun />
+          </button>
+        </Link>
       </div>
       <div className="down flex items-center gap-2 flex-col">
         <button

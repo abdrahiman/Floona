@@ -86,7 +86,9 @@ html.light {
     margin: 0;
   }
 }
-
+.taskdrag{
+  --webkit-user-drag: element;
+}
 
 html[lang="ar"]{
   direction:rtl;
